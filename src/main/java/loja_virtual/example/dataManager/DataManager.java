@@ -1,5 +1,8 @@
 package loja_virtual.example.dataManager;
 
+import com.mchange.v2.c3p0.ComboPooledDataSource;
+
+import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -22,6 +25,15 @@ public class DataManager {
      * A senha para acessar o banco de dados.
      */
     private final String PASSWORD = "Thiago2826.";
+    public DataSource source;
+    public DataManager() {
+        ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
+        comboPooledDataSource.setJdbcUrl(URL);
+        comboPooledDataSource.setUser(USER);
+        comboPooledDataSource.setPassword(PASSWORD);
+
+        this.source = comboPooledDataSource;
+    }
 
     /**
      * Estabelece uma conexão com o banco de dados utilizando as credenciais
@@ -30,6 +42,6 @@ public class DataManager {
      * @throws SQLException Se ocorrer um erro ao tentar se conectar ao banco de dados.
      */
     public Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
+        return source.getConnection();
     }
 }
