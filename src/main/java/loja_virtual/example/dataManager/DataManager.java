@@ -25,7 +25,14 @@ public class DataManager {
      * A senha para acessar o banco de dados.
      */
     private final String PASSWORD = "Thiago2826.";
+    /**
+     * Fonte de dados utilizada para o pool de conexões.
+     */
     public DataSource source;
+    /**
+     * Construtor da classe {@code DataManager} que configura o pool de conexões
+     * utilizando o C3P0.
+     */
     public DataManager() {
         ComboPooledDataSource comboPooledDataSource = new ComboPooledDataSource();
         comboPooledDataSource.setJdbcUrl(URL);
