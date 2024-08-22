@@ -48,7 +48,11 @@ public class DataManager {
      * @return Uma conexão {@link Connection} com o banco de dados.
      * @throws SQLException Se ocorrer um erro ao tentar se conectar ao banco de dados.
      */
-    public Connection getConnection() throws SQLException {
-        return source.getConnection();
+    public Connection getConnection() {
+        try {
+            return source.getConnection();
+        }catch (SQLException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 }
