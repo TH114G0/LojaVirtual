@@ -46,7 +46,7 @@ public class DataManager {
      * Estabelece uma conexão com o banco de dados utilizando as credenciais
      * fornecidas e retorna a conexão estabelecida.
      * @return Uma conexão {@link Connection} com o banco de dados.
-     * @throws SQLException Se ocorrer um erro ao tentar se conectar ao banco de dados.
+     * @throws RuntimeException Se ocorrer um erro ao tentar se conectar ao banco de dados.
      */
     public Connection getConnection() {
         try {

@@ -11,15 +11,32 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-
+/**
+ * Classe responsável pelo acesso a dados relacionados às categorias no banco de dados.
+ * Utiliza JDBC para executar consultas SQL e mapear os resultados para objetos Categoria e Produto.
+ */
 public class CategoriaDAO {
 
 	private Connection connection;
 
+	/**
+	 * Construtor que inicializa a conexão com o banco de dados.
+	 *
+	 * @param connection a conexão com o banco de dados a ser utilizada pelos métodos desta classe.
+	 */
 	public CategoriaDAO(Connection connection) {
 		this.connection = connection;
 	}
 
+	/**
+	 * Recupera todas as categorias do banco de dados.
+	 * <p>
+	 * Executa uma consulta SQL para listar todas as categorias e mapeia os resultados para uma lista de objetos Categoria.
+	 * </p>
+	 *
+	 * @return uma lista contendo todas as categorias.
+	 * @throws RuntimeException se ocorrer um erro durante a execução da consulta SQL.
+	 */
 	public List<Categoria> listar() {
 		try {
 			List<Categoria> categorias = new ArrayList<>();
@@ -41,6 +58,16 @@ public class CategoriaDAO {
 		}
 	}
 
+	/**
+	 * Recupera todas as categorias juntamente com seus produtos associados.
+	 * <p>
+	 * Executa uma consulta SQL que retorna categorias e produtos. Mapeia os resultados para uma lista de objetos Categoria,
+	 * e adiciona produtos a cada categoria conforme necessário.
+	 * </p>
+	 *
+	 * @return uma lista de categorias, cada uma contendo seus produtos associados.
+	 * @throws RuntimeException se ocorrer um erro durante a execução da consulta SQL.
+	 */
 	public List<Categoria> listarComProduto() {
 		Categoria ultima = null;
 		try {

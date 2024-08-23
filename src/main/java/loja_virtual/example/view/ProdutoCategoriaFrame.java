@@ -12,6 +12,13 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
 
+/**
+ * Classe que representa a interface gráfica para gerenciamento de produtos e categorias.
+ * <p>
+ * Esta classe fornece uma tela para adicionar, editar, excluir e listar produtos,
+ * bem como para selecionar categorias associadas a produtos.
+ * </p>
+ */
 public class ProdutoCategoriaFrame extends JFrame {
 
 	private static final long serialVersionUID = 1L;
@@ -25,6 +32,12 @@ public class ProdutoCategoriaFrame extends JFrame {
 	private ProdutoController produtoController;
 	private CategoriaController categoriaController;
 
+	/**
+	 * Construtor da classe ProdutoCategoriaFrame.
+	 * <p>
+	 * Inicializa a interface gráfica, configura os componentes e define os eventos dos botões.
+	 * </p>
+	 */
 	public ProdutoCategoriaFrame() {
 		super("Produtos");
 		Container container = getContentPane();
@@ -33,6 +46,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		this.categoriaController = new CategoriaController();
 		this.produtoController = new ProdutoController();
 
+		// Inicializa os rótulos
 		labelNome = new JLabel("Nome do Produto");
 		labelDescricao = new JLabel("Descrição do Produto");
 		labelCategoria = new JLabel("Categoria do Produto");
@@ -49,6 +63,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		container.add(labelDescricao);
 		container.add(labelCategoria);
 
+		// Inicializa os campos de texto e combobox
 		textoNome = new JTextField();
 		textoDescricao = new JTextField();
 		comboCategoria = new JComboBox<>();
@@ -67,6 +82,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		container.add(textoDescricao);
 		container.add(comboCategoria);
 
+		// Inicializa os botões
 		botaoSalvar = new JButton("Salvar");
 		botaoLimpar = new JButton("Limpar");
 
@@ -76,6 +92,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		container.add(botaoSalvar);
 		container.add(botaoLimpar);
 
+		// Inicializa a tabela
 		tabela = new JTable();
 		modelo = (DefaultTableModel) tabela.getModel();
 
@@ -88,6 +105,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		tabela.setBounds(10, 185, 760, 300);
 		container.add(tabela);
 
+		// Inicializa os botões de apagar e editar
 		botaoApagar = new JButton("Excluir");
 		botaoEditar = new JButton("Alterar");
 
@@ -101,6 +119,7 @@ public class ProdutoCategoriaFrame extends JFrame {
 		setVisible(true);
 		setLocationRelativeTo(null);
 
+		// Configura os eventos dos botões
 		botaoSalvar.addActionListener(new ActionListener() {
 			@Override
 			public void actionPerformed(ActionEvent e) {
@@ -136,10 +155,19 @@ public class ProdutoCategoriaFrame extends JFrame {
 		});
 	}
 
+	/**
+	 * Limpa todos os dados da tabela.
+	 */
 	private void limparTabela() {
 		modelo.getDataVector().clear();
 	}
 
+	/**
+	 * Altera o produto selecionado na tabela.
+	 * <p>
+	 * Obtém o produto selecionado e atualiza seus dados no banco de dados.
+	 * </p>
+	 */
 	private void alterar() {
 		int row = tabela.getSelectedRow();
 		if (row >= 0) {
@@ -152,6 +180,12 @@ public class ProdutoCategoriaFrame extends JFrame {
 		}
 	}
 
+	/**
+	 * Deleta o produto selecionado na tabela.
+	 * <p>
+	 * Remove o produto do banco de dados e da tabela.
+	 * </p>
+	 */
 	private void deletar() {
 		int row = tabela.getSelectedRow();
 		if (row >= 0) {
@@ -164,6 +198,9 @@ public class ProdutoCategoriaFrame extends JFrame {
 		}
 	}
 
+	/**
+	 * Preenche a tabela com a lista de produtos do banco de dados.
+	 */
 	private void preencherTabela() {
 		List<Produto> produtos = listarProduto();
 		for (Produto produto : produtos) {
@@ -171,10 +208,22 @@ public class ProdutoCategoriaFrame extends JFrame {
 		}
 	}
 
+	/**
+	 * Obtém a lista de categorias do banco de dados.
+	 *
+	 * @return Lista de categorias.
+	 */
 	private List<Categoria> listarCategoria() {
 		return this.categoriaController.listar();
 	}
 
+	/**
+	 * Salva um novo produto no banco de dados.
+	 * <p>
+	 * Verifica se os campos de nome e descrição não estão vazios e salva o produto
+	 * com a categoria selecionada.
+	 * </p>
+	 */
 	private void salvar() {
 		if (!textoNome.getText().isEmpty() && !textoDescricao.getText().isEmpty()) {
 			Produto produto = new Produto(textoNome.getText(), textoDescricao.getText());
@@ -188,10 +237,18 @@ public class ProdutoCategoriaFrame extends JFrame {
 		}
 	}
 
+	/**
+	 * Obtém a lista de produtos do banco de dados.
+	 *
+	 * @return Lista de produtos.
+	 */
 	private List<Produto> listarProduto() {
 		return this.produtoController.listar();
 	}
 
+	/**
+	 * Limpa os campos de entrada e reseta o combobox de categorias.
+	 */
 	private void limpar() {
 		this.textoNome.setText("");
 		this.textoDescricao.setText("");
