@@ -1,0 +1,1 @@
+packageSearchIndex = [{"l":"All Packages","u":"allpackages-index.html"},{"l":"loja_virtual.example"},{"l":"loja_virtual.example.controller"},{"l":"loja_virtual.example.DAO"},{"l":"loja_virtual.example.dataManager"},{"l":"loja_virtual.example.Model"},{"l":"loja_virtual.example.query"},{"l":"loja_virtual.example.view"}];updateSearchResults();
