@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes and Interfaces","u":"allclasses-index.html"},{"p":"loja_virtual.example","l":"Application"},{"p":"loja_virtual.example.dataManager","l":"DataManager"},{"p":"loja_virtual.example.Model","l":"Product"},{"p":"loja_virtual.example.DAO","l":"ProductDAO"},{"p":"loja_virtual.example.query","l":"ProductQuery"}];updateSearchResults();
